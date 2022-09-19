@@ -9,10 +9,10 @@ const templateSchema = mongoose.Schema({
         type:String,
         require:true
     },
-    questions:[{type:mongoose.Schema.Types.ObjectId, ref:'Questions'}],
+    questions:[{type:String}],
     createdAt:{
         type:Date,
-        default:Date.now
+        default:Date.now 
     },
     editedAt:{
         type:Date,

@@ -48,12 +48,11 @@ router.post('/login', async (req, res) => {
         return res.status(400).send("Incorrect Pasword");
     }
     else {
-        console.log(existingTeacher);
         const payload = {
             id: existingTeacher.id,
             email: existingTeacher.email
         }
-        const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1m" });
+        const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "10m" });
         const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, { expiresIn: "1d" });
         return res.status(200).json({ accessToken, refreshToken });
     }
@@ -65,14 +64,14 @@ router.post('/token', (req, res) => {
         return res.status(400).send("Please provide refresh token");
     }
     try {
-        const payload = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
+        const payload = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);       
         delete payload.exp;
-        const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1m" });
+        const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "10m" });
         res.status(200).json({ accessToken });
-    }
+    }   
     catch (e) {
-        res.status(501).send(e.message);
+        res.status(501).send(e.message); 
     }
 })
 
-module.exports = router; 
+module.exports = router;    

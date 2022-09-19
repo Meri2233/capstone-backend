@@ -13,7 +13,7 @@ const teacherSchema = mongoose.Schema({
         type:String,
         require:true
     },
-    templates:[{type:mongoose.Schema.Types.ObjectId}],
+    templates:[{type:mongoose.Types.ObjectId}], 
     createdAt:{
         type:Date,
         default:Date.now

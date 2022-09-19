@@ -14,7 +14,8 @@ const questionSchema = mongoose.Schema({
         default: Date.now()
     },
     templateId:{
-        type:mongoose.Types.ObjectId
+        type:String,
+        require:true
     }
 })
 
