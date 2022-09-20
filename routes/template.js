@@ -182,6 +182,12 @@ router.get('/mylist', async (req, res) => {
     res.status(200).send(myTemplates);
 })
 
+router.get('/detail/:id', async (req, res) => {
+    const {id} = req.params
+    const myTemplate = await templateModel.findById(id.substring(1));
+    res.status(200).send(myTemplate);
+})
+
 router.get('/myquestions/:id', async (req, res) => {
     const { id } = req.params;
     const myTemplate = await templateModel.findById(id.substring(1));
